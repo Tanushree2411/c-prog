@@ -4,7 +4,7 @@
 void enQueue();
 void deQueue();
 void display();
-int n=5,queue[5],front=0,rear=0,element;
+int n=5,queue[5],front=-1,rear=-1,element;
 
 
 void main()
@@ -45,9 +45,9 @@ void enQueue()
   
    else
    {
-     if(front==0)
+     if(front==-1)
      {
-        front=1;
+        front=0;
      }
      printf("Enter an element to insert :\n");
      scanf("%d",&element);
@@ -59,7 +59,7 @@ void enQueue()
 
 void deQueue()
 {
-   if(front==0 && rear==0)
+   if(front==-1 && rear==-1)
    {
       printf("Underflow\n");
      
@@ -67,11 +67,12 @@ void deQueue()
    else if(front==rear)
    {
       printf("front and rear pointer pointing to the same element so set both pointer to -1\n");
-      front=rear=0;
+      printf("Deleted element from the queue is : %d\n",queue[front]);
+      front=rear=-1;
    }
    else if(front==n)
    {
-     front=1;
+     front=0;
    }
    else
    {
@@ -81,24 +82,11 @@ void deQueue()
 }
 void display()
 {
-   if(front==0)
+   if(front==-1)
    {
       printf("Queue is empty\n");
    }
 
-   else if(front>rear)
-   {
-      printf("Queue elements are :\n");
-      for(int i=front;i<=n;i++)
-      {
-         printf("%d ",queue[i]);
-      }
-      for(int i=1;i<=rear;i++)
-      {
-         printf("%d ",queue[i]);
-      }
-      printf("\n");
-   }
    else
    {
       printf("Queue elements are :\n");
@@ -109,4 +97,3 @@ void display()
       printf("\n");
    }
 }
-
